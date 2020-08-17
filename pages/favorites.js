@@ -1,12 +1,11 @@
 import Head from 'next/head'
 
 import Layout from '../components/layout'
-import Search from '../components/search'
 
 export default function Home() {
   return (
     <Layout>
-      <Search />
+      <p>Favorites coming soon !!</p>
     </Layout>
   )
 }
