@@ -47,8 +47,11 @@ export default function ImageModal ({ image, modalOpen, closeModal }) {
     return getListsByImage(image).map(({ name }) => name)
   }
 
+  const [joinedLists, setJoinedLists] = useState(getListsNames)
+
   const addToList = () => {
     addImageToList(listName, listDescription, image)
+    setJoinedLists(getListsNames())
   }
 
   const onListNameChange = event => {
