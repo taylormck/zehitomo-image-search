@@ -11,8 +11,9 @@ import GridListTile from '@material-ui/core/GridListTile'
 
 import Image from '../components/image'
 
+// Debouncing our fetcher helps us avoid excessive API calls.
 const fetcher = url => fetch(url, { method: 'GET' }).then((res) => res.json())
-const fetchImages = debounce(async token => fetcher(`/api/images?searchToken=${token}`), 500)
+const fetchImages = debounce(async token => fetcher(`/api/images?searchToken=${token}`), 1000)
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,19 +24,20 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
   },
   searchBar: {
-    width: 500,
+    width: 800,
     padding: 50,
   },
   gridList: {
-    width: 600,
-    height: 450,
+    width: 900,
+    height: 600,
+    display: 'flex',
     borderStyle: 'solid',
     borderColor: theme.palette.primary.light,
   },
 }))
 
 export default function Search (props) {
-  const classes = useStyles();
+  const classes = useStyles()
 
   const [searchToken, setSearchToken] = useState('')
   const [imageData, setImageData] = useState([])
@@ -47,6 +49,7 @@ export default function Search (props) {
   const updateSearch = () => {
     const fetchNewImages = async token => {
       const newImages = await fetchImages(token)
+      console.log({ newImages })
       setImageData(newImages)
     }
 
@@ -68,7 +71,7 @@ export default function Search (props) {
         }}
       />
 
-      <GridList className={classes.gridList} cellHeight={160} cols={3}>
+      <GridList className={classes.gridList} cellHeight={200} cols={3}>
         {imageData && imageData.map(image => (
           <GridListTile key={image.id} cols={image.cols || 1}>
             <Image image={image} />
