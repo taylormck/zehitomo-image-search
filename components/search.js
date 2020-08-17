@@ -29,10 +29,9 @@ const useStyles = makeStyles((theme) => ({
   },
   gridList: {
     width: 900,
-    height: 600,
+    height: 650,
     display: 'flex',
-    borderStyle: 'solid',
-    borderColor: theme.palette.primary.light,
+    alignItems: 'flex-start',
   },
 }))
 
