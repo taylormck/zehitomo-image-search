@@ -7,6 +7,8 @@
 
 import Unsplash, { toJson } from 'unsplash-js'
 
+// Some fake data. This is useful for developing the app without constantly
+// banging our heads against Unsplah's strict API limit.
 const fakeData = {
   "total": 6172,
   "total_pages": 618,
@@ -2121,8 +2123,12 @@ const formatResult = result => {
 }
 
 export async function fetchImages(searchToken, imageCount) {
-  // const data = await unsplash.search.photos(searchToken, 1, imageCount).then(toJson)
-  const results = fakeData.results.map(formatResult)
+  // Comment this out when development
+  const data = await unsplash.search.photos(searchToken, 1, imageCount).then(toJson)
+  const results = data.results.map(formatResult)
+
+  // Uncomment for development
+  // const results = fakeData.results.map(formatResult)
 
   return results
 }
