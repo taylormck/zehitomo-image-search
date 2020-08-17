@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
   },
   header: {
     display: 'flex',
-    justifyContent: 'space-around',
+    justifyContent: 'center',
     padding: 50,
     backgroundColor: theme.palette.background.default
   },
@@ -24,6 +24,10 @@ const useStyles = makeStyles((theme) => ({
     padding: 50,
     marginTop: 'auto',
     backgroundColor: theme.palette.background.default
+  },
+  link: {
+    paddingLeft: 20,
+    paddingRight: 20,
   },
 }))
 
