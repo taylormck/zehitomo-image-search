@@ -14,6 +14,10 @@ export default function MyApp(props) {
     if (jssStyles) {
       jssStyles.parentElement.removeChild(jssStyles);
     }
+
+    // Let's double check our storage
+    const favorites = JSON.parse(localStorage.getItem('favorites')) ?? []
+    localStorage.setItem('favorites', JSON.stringify(favorites))
   }, []);
 
   return (
