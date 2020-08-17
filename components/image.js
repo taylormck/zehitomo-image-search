@@ -65,14 +65,11 @@ export default function Image ({ image }) {
   }
 
   const onSave = () => {
-    console.log('saving image', image.id)
     const favorites = JSON.parse(localStorage.getItem('favorites'))
 
     if (!favorites.find(i => i.id === image.id)) {
       favorites.push(image)
-      localStorage.setItem('favorites', JSON.stringify(favorites))
     }
-    console.log({ favorites })
   }
 
   return (
