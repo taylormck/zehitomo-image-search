@@ -1,8 +1,1 @@
-html,
-body {
-  height: 100%;
-  margin: 0;
-  display: flex;
-  justify-content: stretch;
-  flex-direction: column;
-}
+/* Empty globals.css, in case we ever need it */

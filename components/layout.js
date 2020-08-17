@@ -6,7 +6,9 @@ import Typography from '@material-ui/core/Typography'
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'inline-block',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'stretch',
     backgroundColor: theme.palette.background.paper,
     width: '100%',
   },
