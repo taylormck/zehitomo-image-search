@@ -69,6 +69,7 @@ export default function Image ({ image }) {
 
     if (!favorites.find(i => i.id === image.id)) {
       favorites.push(image)
+      localStorage.setItem('favorites', JSON.stringify(favorites))
     }
   }
 
