@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 
+import { saveAs } from 'file-saver'
+
 import { makeStyles } from '@material-ui/core/styles'
 import { Typography } from '@material-ui/core'
 import Button from '@material-ui/core/Button'
@@ -57,8 +59,9 @@ export default function Image ({ image }) {
   }
 
   const onDownload = () => {
-    // TODO
-    console.log('Downloading:', image.id)
+    const fileType = image.urls.full.match(/fm=(\w+)/)[1]
+
+    saveAs(image.urls.full, `${image.id}.${fileType}`)
   }
 
   const onSave = () => {
