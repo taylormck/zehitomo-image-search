@@ -6,6 +6,13 @@ import Modal from '@material-ui/core/Modal'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 
+import {
+  getFavoritesLists,
+  getListByName,
+  getListsByImage,
+  addImageToList,
+} from '../utils/favorites'
+
 const useStyles = makeStyles((theme) => ({
   modalSpace: {
     position: 'absolute',
@@ -14,6 +21,12 @@ const useStyles = makeStyles((theme) => ({
     border: '2px solid #000',
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
+  },
+  modalArea: {
+    padding: 10,
+  },
+  textField: {
+    padding: 5,
   },
 }))
 
@@ -28,34 +41,22 @@ export default function ImageModal ({ image, modalOpen, closeModal }) {
   const classNames = useStyles()
 
   const [listName, setListName] = useState('')
+  const [listDescription, setListDescription] = useState('')
 
-  const getLists = () => {
-    const lists = JSON.parse(localStorage.getItem('lists'))
-
-    const filteredListNames = lists
-      .filter(list => list.members.find(i => i.id === image.id))
-      .map(list => list.name)
-
-      return filteredListNames
+  const getListsNames = () => {
+    return getListsByImage(image).map(({ name }) => name)
   }
 
   const addToList = () => {
-    const lists = JSON.parse(localStorage.getItem('lists'))
-    const list = lists.find(list => list.name === listName)
-
-    if (list) {
-      if (!list.members.find(i => i.id === image.id)) {
-        list.members.push(image)
-      }
-    } else {
-      lists.push({ name: listName, members: [image] })
-    }
-
-    localStorage.setItem('lists', JSON.stringify(lists))
+    addImageToList(listName, listDescription, image)
   }
 
   const onListNameChange = event => {
     setListName(event.target.value)
+  }
+
+  const onListDescriptionChange = event => {
+    setListDescription(event.target.value)
   }
 
   return (
@@ -75,15 +76,25 @@ export default function ImageModal ({ image, modalOpen, closeModal }) {
           alt={image.alt_description}
         />
 
-        <div>
+        <div className={classNames.modalArea}>
           <Typography variant="h6">Lists</Typography>
-          {getLists().map(listName => <Typography key={listName}>{listName}</Typography>)}
+          {getListsNames().map(listName => <Typography key={listName}>{listName}</Typography>)}
         </div>
 
-        <div>
+        <div className={classNames.modalArea}>
+          <Typography variant="h6">Add to an existing list or create a new one</Typography>
           <TextField
             variant="filled"
+            label="List Name"
+            className={classNames.textField}
             onChange={onListNameChange}
+          />
+
+          <TextField
+            variant="filled"
+            label="List Description"
+            className={classNames.textField}
+            onChange={onListDescriptionChange}
           />
 
           <Button

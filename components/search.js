@@ -24,12 +24,11 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
   },
   searchBar: {
-    width: 800,
+    width: '80%',
     padding: 50,
   },
   gridList: {
-    width: 900,
-    height: 650,
+    width: '90%',
     display: 'flex',
     alignItems: 'flex-start',
   },

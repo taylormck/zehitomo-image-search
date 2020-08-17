@@ -61,27 +61,18 @@ export default function Image ({ image }) {
     setHover(false)
   }
 
-  const openModal = () => {
-    setModalOpen(true)
-  }
-
-  const closeModal = () => {
-    setModalOpen(false)
-  }
-
-  const onDownload = () => {
+  const onDownload = event => {
     const fileType = image.urls.full.match(/fm=(\w+)/)[1]
 
     saveAs(image.urls.full, `${image.id}.${fileType}`)
   }
 
-  const onSave = () => {
-    const favorites = JSON.parse(localStorage.getItem('favorites'))
+  const onSave = event => {
+    setModalOpen(true)
+  }
 
-    if (!favorites.find(i => i.id === image.id)) {
-      favorites.push(image)
-      localStorage.setItem('favorites', JSON.stringify(favorites))
-    }
+  const closeModal = () => {
+    setModalOpen(false)
   }
 
   return (
@@ -95,7 +86,6 @@ export default function Image ({ image }) {
         className={classNames.overlayContainer}
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
-        onClick={openModal}
        >
         <Fade in={hover}>
           <div>
