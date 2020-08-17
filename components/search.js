@@ -49,7 +49,6 @@ export default function Search (props) {
   const updateSearch = () => {
     const fetchNewImages = async token => {
       const newImages = await fetchImages(token)
-      console.log({ newImages })
       setImageData(newImages)
     }
 

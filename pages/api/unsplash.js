@@ -2117,15 +2117,6 @@ const unsplash = new Unsplash({
 const formatResult = result => {
   // Not really doing much formatting, but this function is here whenever 
   // we might need it.
-  // const ratio = result.width / result.height
-  // if (ratio > 2) {
-  //   result.cols = 3
-  // } else if (ratio > 1.5) {
-  //   result.cols = 2
-  // } else {
-  //   result.cols = 1
-  // }
-
   return result
 }
 

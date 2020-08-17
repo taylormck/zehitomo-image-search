@@ -18,6 +18,9 @@ export default function MyApp(props) {
     // Let's double check our storage
     const favorites = JSON.parse(localStorage.getItem('favorites')) ?? []
     localStorage.setItem('favorites', JSON.stringify(favorites))
+
+    const lists = JSON.parse(localStorage.getItem('lists')) ?? []
+    localStorage.setItem('lists', JSON.stringify(lists))
   }, []);
 
   return (
