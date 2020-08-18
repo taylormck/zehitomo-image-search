@@ -27,7 +27,32 @@ The decisions I made that will probably stick out the most was to use all functi
 
 I chose to make use the Unsplash API server-side rather than client-side, mostly because that's what's recommended, but also because that's just what made the most sense to me. This project only required the `search.photos` endpoint, which should be fine without the secret key, so it could be done client-side if we wanted, but I was 90% done doing it server-side by the time I figured that out.
 
-As of writing this, I haven't implemented a proper database yet, instead relying on `localStorage` as a substitute. This was mostly due to time constraints. Since I only have a limited amount of time to work on this project, I had to make cuts somewhere.
+As of writing this, I haven't implemented a proper database yet, instead relying on `localStorage` as a substitute. This was mostly due to time constraints.
+
+###### Update
+
+I've started on the database work in a separate branch. While the db is up and running, the UI isn't hooked up to it, and I'm simply out of time to work on this project. I'll push this separate branch up for anyone interested.
+
+In order to run the database, you'll first need to set up an `.env` file in the root folder, based on the `.env/example` added in the repo:
+```bash
+# Database stuff
+POSTGRES_VERSION=9.6-alpine
+POSTGRES_PASSWORD=<your password here>
+POSTGRES_USER=<your username here>
+POSTGRES_DB=zehitomoimagesearch
+COMPOSE_PROJECT_NAME=zehitomoimagesearch
+```
+Use whatever password or username you like.
+
+Then start it up with docker:
+```bash
+docker-compose up -d
+```
+
+Finally, make sure to initialize the db using knex:
+```bash
+knex migrate:latest
+```
 
 #### Do you have any strong rationale for why you made specific ​implementation​ decisions over alternatives?
 

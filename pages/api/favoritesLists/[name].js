@@ -1,14 +1,15 @@
-import { fetchImages } from './unsplash'
-
-const IMAGE_COUNT = 12;
+import db from '../../../db/db'
 
 const get = async (req, res) => {
-  const { query } = req
-  const { searchToken } = query
+  const {
+    query: { name }
+  } = req
 
-  const data = await fetchImages(searchToken, IMAGE_COUNT)
+  const favorites = await db('favorites_lists')
+    .select('name', 'description')
+    .where({ name })
 
-  res.status(200).json(data)
+  res.status(200).json(favorites)
 }
 
 export default async function handler(req, res) {

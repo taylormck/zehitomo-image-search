@@ -2124,11 +2124,11 @@ const formatResult = result => {
 
 export async function fetchImages(searchToken, imageCount) {
   // Comment this out when development
-  const data = await unsplash.search.photos(searchToken, 1, imageCount).then(toJson)
-  const results = data.results.map(formatResult)
+  // const data = await unsplash.search.photos(searchToken, 1, imageCount).then(toJson)
+  // const results = data.results.map(formatResult)
 
   // Uncomment for development
-  // const results = fakeData.results.map(formatResult)
+  const results = fakeData.results.map(formatResult)
 
   return results
 }
